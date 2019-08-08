@@ -1,0 +1,35 @@
+.header-section {
+    padding: 25px 10px;
+    height: 55px;
+    min-width: 400px;
+    background-color: grey;
+    border: 1px solid black;
+}
+
+.header-section div {
+    display: inline-block;
+    padding-top: 9px;
+    margin: 0 2%;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.logo {
+    width: 20%;
+}
+
+.header-middle {
+    width: 40%;
+}
+
+.header-right {
+    width: 20%;
+}
+
+.header-right a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0 3%;
+}
