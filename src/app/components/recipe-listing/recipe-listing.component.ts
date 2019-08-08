@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-listing',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-listing.component.css']
 })
 export class RecipeListingComponent implements OnInit {
+  newRecipe:boolean = false;
 
   recipes: any = [
     {
@@ -20,9 +22,33 @@ export class RecipeListingComponent implements OnInit {
     }
   ]
 
+  recipe: object = {
+    title: '',
+    description: '',
+    imageURL: ''
+  }
+
+  recipeForm = new FormGroup ({
+    title: new FormControl('',[Validators.required]),
+    imageURL: new FormControl('',[Validators.required]),
+    description: new FormControl('',[Validators.required])
+  });
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  revert() {
+    this.recipeForm.reset();
+  }
+
+  addRecipe() {
+    this.recipe['title'] = this.recipeForm.controls.title.value;
+    this.recipe['imageURL'] = this.recipeForm.controls.imageURL.value;
+    this.recipe['description'] = this.recipeForm.controls.description.value;
+    this.recipes.push(this.recipe);
+    this.revert();
   }
 
 }

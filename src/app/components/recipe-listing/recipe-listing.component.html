@@ -2,27 +2,42 @@
     <div class="container">
         <div class="row">
             <div class="recipe-heading">
-                <h2>Recipes.<button class="btn btn-success new-recipe-button">New Recipe</button></h2>
+                <h2>Recipes.
+                    <button class="btn btn-success new-recipe-button" *ngIf="!newRecipe"
+                        (click)="newRecipe = !newRecipe">New Recipe</button>
+                    <button class="btn btn-danger new-recipe-button" *ngIf="newRecipe"
+                        (click)="newRecipe = !newRecipe">Close New recipe</button>
+                </h2>
             </div>
         </div>
-        <div class="row recipe-form">
-            <div class="col-12">
-                <form>
+        <div class="row recipe-form" *ngIf="newRecipe">
+            <div class="col">
+                <form [formGroup]="recipeForm">
                     <div class="form-group">
-                        <label for="recipeTitle">Name</label>
-                        <input type="text" class="form-control" placeholder="Enter title">
+                        <label for="recipeTitle">Title <span class="required-field">*</span></label>
+                        <input type="text" formControlName="title" class="form-control" placeholder="Enter title">
+                        <small class="error-msg"
+                            *ngIf="(recipeForm?.controls.title.dirty || recipeForm?.controls.title.touched) && recipeForm?.controls.title.invalid && recipeForm?.controls.title.errors.required">Title
+                            is a required field</small>
                     </div>
                     <div class="form-group">
-                        <label for="recipeImage">Image URL</label>
-                        <input type="text" class="form-control" placeholder="Enter image URL">
+                        <label for="recipeImage">Image URL <span class="required-field">*</span></label>
+                        <input type="text" formControlName="imageURL" class="form-control"
+                            placeholder="Enter image URL">
+                        <small class="error-msg"
+                            *ngIf="(recipeForm?.controls.imageURL.dirty || recipeForm?.controls.imageURL.touched) && recipeForm?.controls.imageURL.invalid && recipeForm?.controls.imageURL.errors.required">Image
+                            URL is a required field</small>
                     </div>
                     <div class="form-group">
-                        <label for="recipeDescription">Description</label>
-                        <textarea type="textarea" rows="3" class="form-control"
+                        <label for="recipeDescription">Description <span class="required-field">*</span></label>
+                        <textarea type="textarea" formControlName="description" rows="3" class="form-control"
                             placeholder="Enter description"></textarea>
+                        <small class="error-msg"
+                            *ngIf="(recipeForm?.controls.description.dirty || recipeForm?.controls.description.touched) && recipeForm?.controls.description.invalid && recipeForm?.controls.description.errors.required">Description
+                            URL is a required field</small>
                     </div>
-                    <button class="btn btn-success">Save</button>
-                    <button class="btn btn-danger">Cancel</button>
+                    <button [disabled]="recipeForm.invalid" class="btn btn-success" (click)="addRecipe()">Add</button>
+                    <button class="btn btn-danger" (click)="revert()">Cancel</button>
                 </form>
             </div>
         </div>
