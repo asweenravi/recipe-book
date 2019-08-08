@@ -1,0 +1,33 @@
+.shopping-heading {
+    padding-top: 2rem;
+}
+
+form button {
+    margin-top: .5rem;
+}
+
+.cart-heading {
+    width: 100%;
+}
+
+.cart-icon {
+    float:right;
+}
+
+.cart-listing {
+    width: 100%;
+}
+.cart-item {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    margin: 5px;
+}
+
+.cart-item p {
+    margin:1rem;
+}
+
+.error-msg,
+.required-field {
+    color: red;
+}
