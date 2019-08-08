@@ -1,1 +1,41 @@
-<p>recipe-listing works!</p>
+<section class="recipe-listing-section">
+    <div class="container">
+        <div class="row">
+            <div class="recipe-heading">
+                <h2>Recipes.<button class="btn btn-success new-recipe-button">New Recipe</button></h2>
+            </div>
+        </div>
+        <div class="row recipe-form">
+            <div class="col-12">
+                <form>
+                    <div class="form-group">
+                        <label for="recipeTitle">Name</label>
+                        <input type="text" class="form-control" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipeImage">Image URL</label>
+                        <input type="text" class="form-control" placeholder="Enter image URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipeDescription">Description</label>
+                        <textarea type="textarea" rows="3" class="form-control"
+                            placeholder="Enter description"></textarea>
+                    </div>
+                    <button class="btn btn-success">Save</button>
+                    <button class="btn btn-danger">Cancel</button>
+                </form>
+            </div>
+        </div>
+        <hr />
+        <div class="row recipe-item" *ngFor="let recipe of recipes">
+            <div class="col-8">
+                <h3>{{recipe.title}}</h3>
+                <p>{{recipe.description}}</p>
+                <button class="btn btn-success more-info">More info</button>
+            </div>
+            <div class="col-4">
+                <img class="image-section" src="{{recipe.imageURL}}">
+            </div>
+        </div>
+    </div>
+</section>
