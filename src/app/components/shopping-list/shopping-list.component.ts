@@ -13,19 +13,12 @@ export class ShoppingListComponent implements OnInit {
     amount: new FormControl('',[Validators.required])
   });
 
+  cartItem: Object = {
+    name: '',
+    amount: '' 
+  };
+
   cartItems: any = [
-    {
-      name: 'Apple',
-      amount: '5'
-    },
-    {
-      name: 'Orange',
-      amount: '6'
-    },
-    {
-      name: 'Fig',
-      amount: '2'
-    },
   ]
 
   constructor() { }
@@ -34,7 +27,14 @@ export class ShoppingListComponent implements OnInit {
   }
 
   revert() {
-    this.shoppingForm.reset()
+    this.shoppingForm.reset();
+  }
+
+  AddProduct() {
+    this.cartItem['name'] = this.shoppingForm.controls.name.value;
+    this.cartItem['amount'] = this.shoppingForm.controls.amount.value; 
+    this.cartItems.push(this.cartItem);
+    this.revert();
   }
 
 }

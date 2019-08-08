@@ -22,7 +22,7 @@
                                 Amount is a required field.
                         </small>
                     </div>
-                    <button type="submit" [disabled]="!shoppingForm.valid" class="btn btn-success">Add</button><br />
+                    <button type="submit" (click)="AddProduct()" [disabled]="!shoppingForm.valid" class="btn btn-success">Add</button><br />
                     <button class="btn btn-primary" (click)="revert()">Clear</button>
                 </form>
             </div>
@@ -37,10 +37,12 @@
         </div>
         <div class="row">
             <div class="cart-listing">
+                <p class="cart-empty" *ngIf="!cartItems.length">No Items in Cart</p>
                 <div class="cart-item" *ngFor="let item of cartItems">
                     <p>{{item.name}} ({{item.amount}})</p>
                 </div>
             </div>
         </div>
     </div>
+    <hr />
 </section>
