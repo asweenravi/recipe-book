@@ -1,9 +1,33 @@
-<section class="recipe-details-">
+<section class="recipe-details">
     <div class="container">
         <div class="row">
-            <h3 class="details-heading">{{recipe.title}}</h3>
-            <p>{{recipe.description}}</p>
-            <img src="{{recipe.imageURL}}">
+            <h3 class="recipe-heading">{{recipe.title}}</h3>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <img class="recipe-image" src="{{recipe.imageURL}}">
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <p class="recipe-description">{{recipe.description}}</p>
+                </div>
+                <div class="row">
+                    <div class="ingredient-heading">
+                        <h5>Ingredients<i class="fa fa-pencil icon" aria-hidden="true" [hidden]="editable"
+                                (click)="editable = !editable"></i><i class="fa fa-times icon" aria-hidden="true"
+                                [hidden]="!editable" (click)="editable = !editable"></i></h5>
+
+                        <button class="btn btn-success add-button" (click)="addNew()">Add</button>
+                    </div>
+                    <div class="ingredient-list">
+                        <p class="ingredient-list-empty" *ngIf="!recipe.ingredients.length">No Items in Cart</p>
+                        <div class="ingredient-item" *ngFor="let item of recipe.ingredients;let i = index">
+                            <p *ngIf="!editable">{{item}}</p>
+                            <input type="text" class="form-control" *ngIf="editable" [(ngModel)]="item">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

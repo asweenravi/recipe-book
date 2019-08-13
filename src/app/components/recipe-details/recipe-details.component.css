@@ -1,3 +1,34 @@
 .details-heading {
     margin-top: 2rem;
 }
+
+.row {
+    margin-top: 2rem;
+}
+
+.ingredient-list {
+    width: 100%;
+}
+
+.ingredient-item {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    margin: 5px;
+}
+
+.ingredient-item p {
+    margin:1rem;
+}
+
+.icon {
+    float: right;
+}
+
+.ingredient-heading,
+.ingredient-heading h5 {
+    width: 100%;
+}
+
+.add-button {
+    float: right;
+}
