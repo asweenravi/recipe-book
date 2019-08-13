@@ -24,7 +24,7 @@
                         <div class="ingredient-item" *ngFor="let item of recipe.ingredients;let i = index">
                             <p *ngIf="!editable">{{item}}</p>
                             <input type="text" class="form-control" *ngIf="editable" [(ngModel)]="item">
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
