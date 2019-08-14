@@ -1,0 +1,8 @@
+.filler-footer {
+    height: 5rem;
+    width: 100%;
+    background-color: #e6e6e6;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}

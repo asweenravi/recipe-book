@@ -14,8 +14,8 @@ export class ShoppingListComponent implements OnInit {
   });
 
   cartItem: Object = {
-    name: '',
-    amount: '' 
+    'name': '',
+    'amount': '' 
   };
 
   cartItems: any = [
@@ -30,11 +30,17 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingForm.reset();
   }
 
-  AddProduct() {
+  addProduct() {
     this.cartItem['name'] = this.shoppingForm.controls.name.value;
     this.cartItem['amount'] = this.shoppingForm.controls.amount.value; 
-    this.cartItems.push(this.cartItem);
+    var addingItem = JSON.parse(JSON.stringify(this.cartItem));
+    this.cartItems.push(addingItem);
     this.revert();
+  }
+
+
+  deleteItem(index) {
+    this.cartItems.splice(index,1);
   }
 
 }
