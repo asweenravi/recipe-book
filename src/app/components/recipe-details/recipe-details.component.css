@@ -6,9 +6,19 @@
     margin-top: 2rem;
 }
 
+.editable-section {
+    position: absolute;
+    width: 90%;
+    font-size: 2rem;
+}
+
 .ingredient-list,
 .recipe-heading {
     width: 100%;
+}
+
+.text-field {
+    margin-top: .5rem;
 }
 
 .ingredient-item {

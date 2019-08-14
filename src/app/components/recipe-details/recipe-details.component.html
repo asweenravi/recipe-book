@@ -1,17 +1,26 @@
 <section class="recipe-details">
     <div class="container">
         <div class="row">
-            <h3 class="recipe-heading">{{recipe.title}}<i class="fa fa-pencil icon" aria-hidden="true"
-                    [hidden]="editable" (click)="editable = !editable"></i><i class="fa fa-times icon"
-                    aria-hidden="true" [hidden]="!editable" (click)="editable = !editable"></i></h3>
+            <div class="editable-section">
+                <i class="fa fa-pencil icon" aria-hidden="true" [hidden]="editable"
+                    (click)="editable = !editable"></i><i class="fa fa-times icon" aria-hidden="true"
+                    [hidden]="!editable" (click)="editable = !editable;updateRecipe()"></i>
+            </div>
+            <h3 class="recipe-heading">{{recipe.title}}</h3>
+            <input type="text" [(ngModel)]="recipe.title" [hidden]="!editable" class="form-control text-field"
+                    placeholder="Enter Title">
         </div>
         <div class="row">
             <div class="col-6">
                 <img class="recipe-image" src="{{recipe.imageURL}}">
+                <input type="text" [(ngModel)]="recipe.imageURL" [hidden]="!editable" class="form-control text-field"
+                    placeholder="Enter image URL">
             </div>
             <div class="col-6">
                 <div class="row">
                     <p class="recipe-description">{{recipe.description}}</p>
+                    <input type="text" [(ngModel)]="recipe.description" [hidden]="!editable" class="form-control text-field"
+                    placeholder="Enter Title">
                 </div>
                 <div class="row">
                     <div class="ingredient-heading">

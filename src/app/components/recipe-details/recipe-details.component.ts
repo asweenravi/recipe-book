@@ -47,4 +47,8 @@ export class RecipeDetailsComponent implements OnInit {
     }
   }
 
+  updateRecipe() {
+    //api call for update recipe
+  }
+
 }
