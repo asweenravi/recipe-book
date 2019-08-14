@@ -40,3 +40,7 @@
 .new-item-input {
     margin: .5rem;
 }
+
+.error-msg{
+    color: red;
+}

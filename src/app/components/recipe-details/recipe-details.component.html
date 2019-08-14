@@ -22,12 +22,16 @@
                         <button class="btn btn-success add-button" [hidden]="addNew"
                             (click)="addNew = !addNew">Add</button>
                         <form [formGroup]="ingredientForm">
-                            <button class="btn btn-danger close-button" (click)="revert()" [hidden]="!addNew"
+                                <div class="form-group" *ngIf="addNew">
+                                    <input type="text" class="form-control" formControlName="ingredient" placeholder="Add ingredient">
+                                    <small class="error-msg" *ngIf="(ingredientForm?.controls.ingredient.dirty || ingredientForm?.controls.ingredient.touched) && ingredientForm?.controls.ingredient.invalid && ingredientForm?.controls.ingredient.errors.required">
+                                            Add ingredient is a required field.
+                                    </small>
+                                </div>
+                                <button class="btn btn-danger close-button" (click)="revert()" [hidden]="!addNew"
                                 (click)="addNew = !addNew">Close</button>
-                            <button class="btn btn-success save-button" (click)="addIngredient()" [hidden]="!addNew"
+                            <button type="submit" [disabled]="!ingredientForm.valid" class="btn btn-success save-button" (click)="addIngredient()" [hidden]="!addNew"
                                 (click)="addNew = !addNew">Save</button>
-                            <input type="text" formControlName="ingredient" class="form-control new-item-input"
-                                *ngIf="addNew">
                         </form>
                     </div>
                     <div class="ingredient-list">
