@@ -17,8 +17,9 @@
                                 (click)="editable = !editable"></i><i class="fa fa-times icon" aria-hidden="true"
                                 [hidden]="!editable" (click)="editable = !editable"></i></h5>
 
-                        <button class="btn btn-success add-button" (click)="addNew()">Add</button>
+                        <button class="btn btn-success add-button" (click)="addNew = !addNew">Add</button>
                     </div>
+                    <input type="text" class="form-control" *ngIf="addNew">
                     <div class="ingredient-list">
                         <p class="ingredient-list-empty" *ngIf="!recipe.ingredients.length">No Items in Cart</p>
                         <div class="ingredient-item" *ngFor="let item of recipe.ingredients;let i = index">

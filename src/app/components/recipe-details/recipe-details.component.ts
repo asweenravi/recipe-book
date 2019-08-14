@@ -15,9 +15,11 @@ export class RecipeDetailsComponent implements OnInit {
     ingredients: ['lamb','buns']
   }
   editable: boolean;
+  addNew: boolean;
 
   constructor() { 
     this.editable = false;
+    this.addNew = false;
   }
 
   ngOnInit() {
