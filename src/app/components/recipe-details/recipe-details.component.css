@@ -25,10 +25,18 @@
 }
 
 .ingredient-heading,
+.add-ingredient,
 .ingredient-heading h5 {
     width: 100%;
 }
 
-.add-button {
+.add-button,
+.close-button,
+.save-button {
     float: right;
+    margin: 0 0 .5rem .5rem
+}
+
+.new-item-input {
+    margin: .5rem;
 }

@@ -17,15 +17,26 @@
                                 (click)="editable = !editable"></i><i class="fa fa-times icon" aria-hidden="true"
                                 [hidden]="!editable" (click)="editable = !editable"></i></h5>
 
-                        <button class="btn btn-success add-button" (click)="addNew = !addNew">Add</button>
                     </div>
-                    <input type="text" class="form-control" *ngIf="addNew">
+                    <div class="add-ingredient">
+                        <button class="btn btn-success add-button" [hidden]="addNew"
+                            (click)="addNew = !addNew">Add</button>
+                        <form [formGroup]="ingredientForm">
+                            <button class="btn btn-danger close-button" (click)="revert()" [hidden]="!addNew"
+                                (click)="addNew = !addNew">Close</button>
+                            <button class="btn btn-success save-button" (click)="addIngredient()" [hidden]="!addNew"
+                                (click)="addNew = !addNew">Save</button>
+                            <input type="text" formControlName="ingredient" class="form-control new-item-input"
+                                *ngIf="addNew">
+                        </form>
+                    </div>
                     <div class="ingredient-list">
-                        <p class="ingredient-list-empty" *ngIf="!recipe.ingredients.length">No Items in Cart</p>
+                        <p class="ingredient-list-empty" *ngIf="!recipe.ingredients.length">No ingredient(s) listed</p>
                         <div class="ingredient-item" *ngFor="let item of recipe.ingredients;let i = index">
-                            <p *ngIf="!editable">{{item}}</p>
-                            <input type="text" class="form-control" *ngIf="editable" [(ngModel)]="item">
-                        </div> 
+                            <p>{{item}}
+                                <i class="fa fa-trash icon" *ngIf="editable" (click)="deleteIngredient(i)" aria-hidden="true"></i>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

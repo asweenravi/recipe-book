@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-details',
@@ -17,12 +18,30 @@ export class RecipeDetailsComponent implements OnInit {
   editable: boolean;
   addNew: boolean;
 
+  ingredientForm = new FormGroup ({
+    ingredient: new FormControl ('', [])
+  })
+
   constructor() { 
     this.editable = false;
     this.addNew = false;
   }
 
   ngOnInit() {
+  }
+
+  revert() {
+    this.ingredientForm.reset();
+  }
+
+  addIngredient() {
+    this.recipe.ingredients.push(this.ingredientForm.controls.ingredient.value);
+    console.log(this.recipe.ingredients);
+    this.revert();
+  }
+
+  deleteIngredient(index) {
+    this.recipe.ingredients.splice(index,1);
   }
 
 }
