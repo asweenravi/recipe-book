@@ -10,7 +10,8 @@ form button {
     margin-top: .5rem;
 }
 
-.cart-heading {
+.cart-heading,
+.product-addition {
     width: 100%;
 }
 
@@ -34,4 +35,10 @@ form button {
 .error-msg,
 .required-field {
     color: red;
+}
+
+.add-button,
+.clear-button {
+    float: right;
+    margin-left: .5rem; 
 }

@@ -12,14 +12,12 @@ export class ShoppingListComponent implements OnInit {
     name: new FormControl('',[Validators.required]),
     amount: new FormControl('',[Validators.required])
   });
-
   cartItem: Object = {
     'name': '',
     'amount': '' 
   };
-
-  cartItems: any = [
-  ]
+  cartItems: any = [];
+  editable: boolean = false;
 
   constructor() { }
 
@@ -41,6 +39,9 @@ export class ShoppingListComponent implements OnInit {
 
   deleteItem(index) {
     this.cartItems.splice(index,1);
+    if(this.cartItems.length === 0) {
+      this.editable = false;
+    }
   }
 
 }

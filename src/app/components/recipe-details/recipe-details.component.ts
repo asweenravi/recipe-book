@@ -42,6 +42,9 @@ export class RecipeDetailsComponent implements OnInit {
 
   deleteIngredient(index) {
     this.recipe.ingredients.splice(index,1);
+    if(this.recipe.ingredients.length === 0) {
+      this.editable = false;
+    }
   }
 
 }

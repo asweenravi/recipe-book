@@ -29,11 +29,14 @@
     align-items: center;
 }
 
-.recipe-form button {
-    margin-right: 1rem;
-}
 
 .error-msg,
 .required-field {
     color: red;
+}
+
+.add-button,
+.clear-button {
+    float: right;
+    margin-left: .5rem; 
 }
