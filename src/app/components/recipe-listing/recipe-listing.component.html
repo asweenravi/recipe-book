@@ -36,9 +36,9 @@
                             *ngIf="(recipeForm?.controls.description.dirty || recipeForm?.controls.description.touched) && recipeForm?.controls.description.invalid && recipeForm?.controls.description.errors.required">Description
                             URL is a required field</small>
                     </div>
+                    <button class="btn btn-primary clear-button" (click)="revert()">Clear</button>
                     <button [disabled]="recipeForm.invalid" class="btn btn-success add-button"
                         (click)="addRecipe()">Add</button>
-                    <button class="btn btn-primary clear-button" (click)="revert()">Clear</button>
                 </form>
             </div>
         </div>

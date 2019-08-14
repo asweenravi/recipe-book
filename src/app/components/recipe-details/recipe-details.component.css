@@ -6,7 +6,8 @@
     margin-top: 2rem;
 }
 
-.ingredient-list {
+.ingredient-list,
+.recipe-heading {
     width: 100%;
 }
 
@@ -22,6 +23,12 @@
 
 .icon {
     float: right;
+}
+
+.fa-pencil.icon,
+.fa-times.icon {
+    margin: .5rem;
+    margin-left: 1rem;
 }
 
 .ingredient-heading,

@@ -1,7 +1,9 @@
 <section class="recipe-details">
     <div class="container">
         <div class="row">
-            <h3 class="recipe-heading">{{recipe.title}}</h3>
+            <h3 class="recipe-heading">{{recipe.title}}<i class="fa fa-pencil icon" aria-hidden="true"
+                    [hidden]="editable" (click)="editable = !editable"></i><i class="fa fa-times icon"
+                    aria-hidden="true" [hidden]="!editable" (click)="editable = !editable"></i></h3>
         </div>
         <div class="row">
             <div class="col-6">
@@ -13,27 +15,30 @@
                 </div>
                 <div class="row">
                     <div class="ingredient-heading">
-                        <h5>Ingredients<i class="fa fa-pencil icon" aria-hidden="true" [hidden]="editable"
-                                (click)="editable = !editable"></i><i class="fa fa-times icon" aria-hidden="true"
-                                [hidden]="!editable" (click)="editable = !editable"></i></h5>
-                    </div>
-                    <div class="add-ingredient">
-                        <button class="btn btn-success add-button" [hidden]="addNew"
-                            (click)="addNew = !addNew">Add</button>
-                        <form [formGroup]="ingredientForm">
-                            <div class="form-group" *ngIf="addNew">
-                                <input type="text" class="form-control" formControlName="ingredient"
-                                    placeholder="Add ingredient">
-                                <small class="error-msg"
-                                    *ngIf="(ingredientForm?.controls.ingredient.dirty || ingredientForm?.controls.ingredient.touched) && ingredientForm?.controls.ingredient.invalid && ingredientForm?.controls.ingredient.errors.required">
-                                    Add ingredient is a required field.
-                                </small>
+                        <h5>Ingredients
+                            <button class="btn btn-success add-button" [hidden]="addNew" (click)="addNew = !addNew">Add
+                                ingredient</button>
+                            <button class="btn btn-danger close-button" [hidden]="!addNew" (click)="addNew = !addNew">
+                                Remove Add
+                                ingredient</button>
+                            <div class="add-ingredient">
+                                <form [formGroup]="ingredientForm">
+                                    <div class="form-group" *ngIf="addNew">
+                                        <input type="text" class="form-control" formControlName="ingredient"
+                                            placeholder="Add ingredient">
+                                        <small class="error-msg"
+                                            *ngIf="(ingredientForm?.controls.ingredient.dirty || ingredientForm?.controls.ingredient.touched) && ingredientForm?.controls.ingredient.invalid && ingredientForm?.controls.ingredient.errors.required">
+                                            Add ingredient is a required field.
+                                        </small>
+                                    </div>
+                                    <button class="btn btn-primary close-button" (click)="revert()"
+                                        [hidden]="!addNew">Clear</button>
+                                    <button type="submit" [disabled]="!ingredientForm.valid"
+                                        class="btn btn-success save-button" (click)="addIngredient()" [hidden]="!addNew"
+                                        (click)="addNew = !addNew">Add</button>
+                                </form>
                             </div>
-                            <button class="btn btn-danger close-button" (click)="revert()" [hidden]="!addNew"
-                                (click)="addNew = !addNew">Close</button>
-                            <button type="submit" [disabled]="!ingredientForm.valid" class="btn btn-success save-button"
-                                (click)="addIngredient()" [hidden]="!addNew" (click)="addNew = !addNew">Save</button>
-                        </form>
+                        </h5>
                     </div>
                     <div class="ingredient-list">
                         <p class="ingredient-list-empty" *ngIf="!recipe.ingredients.length">No ingredient(s) listed</p>
