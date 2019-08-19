@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RecipeService } from 'src/app/services/recipe/recipe.service';
 
 @Component({
   selector: 'app-recipe-listing',
@@ -10,22 +11,9 @@ import { Router } from '@angular/router';
 export class RecipeListingComponent implements OnInit {
   newRecipe:boolean = false;
 
-  recipes: any = [
-    {
-      id: 1,
-      title: 'Lamb kebab burger',
-      description: 'Jazz up a shop-bought lamb burger with garlic mayo, gherkins and chilli for a hot and spicy twist. Perfect for lazy summer weekends',
-      imageURL: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2019/05/hot-and-spicy-burgers.jpg?itok=Ao-88qqa',
-      ingredients: ['lamb','buns']
-    },
-    {
-      id: 2,
-      title: 'Chicken & mushroom spud pies',
-      description: 'Jazz up a jacket potato with this creamy filling',
-      imageURL: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--792455_11.jpg?itok=wRvrD2ir',
-      ingredients: ['lamb','buns']
-    }
-  ]
+  recipesData: any;
+
+  recipes: any;
 
   recipe: object = {
     title: '',
@@ -39,13 +27,10 @@ export class RecipeListingComponent implements OnInit {
     description: new FormControl('',[Validators.required])
   });
 
-  constructor( private router: Router) { }
+  constructor( private _router: Router, private _recipeService: RecipeService) { }
 
   ngOnInit() {
-  }
-
-  revert() {
-    this.recipeForm.reset();
+    this.getRecipes();
   }
 
   addRecipe() {
@@ -57,8 +42,23 @@ export class RecipeListingComponent implements OnInit {
     this.revert();
   }
 
+  getRecipes() {
+
+    this._recipeService.getRecipe().subscribe((results)=>{
+      this.recipesData = results['data'];
+      this.recipes = [];
+      this.recipesData.forEach((elem)=>{
+        this.recipes.push(elem.data)
+        })
+    })
+  }
+
   openDetails(id) {
-    this.router.navigate(['recipe', id])
+    this._router.navigate(['recipe', id])
+  }
+
+  revert() {
+    this.recipeForm.reset();
   }
 
 }
