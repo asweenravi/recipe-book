@@ -61,3 +61,7 @@
 .error-msg{
     color: red;
 }
+
+.row.recipe-item:last-child {
+    margin-bottom: 7rem;
+}

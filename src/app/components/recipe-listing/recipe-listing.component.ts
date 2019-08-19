@@ -9,7 +9,7 @@ import { RecipeService } from 'src/app/services/recipe/recipe.service';
   styleUrls: ['./recipe-listing.component.css']
 })
 export class RecipeListingComponent implements OnInit {
-  newRecipe:boolean = false;
+  newRecipe: boolean = false;
 
   recipesData: any;
 
@@ -21,35 +21,45 @@ export class RecipeListingComponent implements OnInit {
     imageURL: ''
   }
 
-  recipeForm = new FormGroup ({
-    title: new FormControl('',[Validators.required]),
-    imageURL: new FormControl('',[Validators.required]),
-    description: new FormControl('',[Validators.required])
+  recipeForm = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    imageURL: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required])
   });
 
-  constructor( private _router: Router, private _recipeService: RecipeService) { }
+  constructor(private _router: Router, private _recipeService: RecipeService) { }
 
   ngOnInit() {
     this.getRecipes();
   }
 
   addRecipe() {
+    let self = this;
     this.recipe['id'] = this.recipes.length + 1;
     this.recipe['title'] = this.recipeForm.controls.title.value;
     this.recipe['imageURL'] = this.recipeForm.controls.imageURL.value;
     this.recipe['description'] = this.recipeForm.controls.description.value;
-    this.recipes.push(this.recipe);
-    this.revert();
+    this.recipe['ingredients'] = [];
+    this._recipeService.addRecipe(this.recipe).subscribe((res)=>{
+      self.recipes.push(self.recipe);
+      self.revert();
+    })
+  }
+
+  deleteItem() {
+    this._recipeService.deleteRecipe(this.recipe).subscribe((res)=>{
+      console.log(res);
+    })
   }
 
   getRecipes() {
 
-    this._recipeService.getRecipe().subscribe((results)=>{
+    this._recipeService.getRecipes().subscribe((results) => {
       this.recipesData = results['data'];
       this.recipes = [];
-      this.recipesData.forEach((elem)=>{
+      this.recipesData.forEach((elem) => {
         this.recipes.push(elem.data)
-        })
+      })
     })
   }
 

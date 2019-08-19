@@ -39,3 +39,8 @@
     float: right;
     margin-left: .5rem; 
 }
+
+.icon {
+    float: right;
+    font-size: 2rem;
+}

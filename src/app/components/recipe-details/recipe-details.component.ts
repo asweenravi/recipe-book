@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { RecipeService } from 'src/app/services/recipe/recipe.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -7,31 +9,21 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./recipe-details.component.css']
 })
 export class RecipeDetailsComponent implements OnInit {
-
-  recipe = {
-    id: 2,
-    title: 'Chicken & mushroom spud pies',
-    description: 'Jazz up a jacket potato with this creamy filling',
-    imageURL: 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--792455_11.jpg?itok=wRvrD2ir',
-    ingredients: ['lamb','buns']
-  }
+  recipe: any;
   editable: boolean;
   addNew: boolean;
 
-  ingredientForm = new FormGroup ({
-    ingredient: new FormControl ('', [Validators.required])
+  ingredientForm = new FormGroup({
+    ingredient: new FormControl('', [Validators.required])
   })
 
-  constructor() { 
+  constructor(private _route: ActivatedRoute, private _recipeService: RecipeService) {
     this.editable = false;
     this.addNew = false;
   }
 
   ngOnInit() {
-  }
-
-  revert() {
-    this.ingredientForm.reset();
+    this.getRecipe();
   }
 
   addIngredient() {
@@ -41,14 +33,28 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   deleteIngredient(index) {
-    this.recipe.ingredients.splice(index,1);
-    if(this.recipe.ingredients.length === 0) {
+    this.recipe.ingredients.splice(index, 1);
+    if (this.recipe.ingredients.length === 0) {
       this.editable = false;
     }
   }
 
+  getRecipe() {
+    this._recipeService.getRecipe(this._route.snapshot.params.id).subscribe((results) => {
+      this.recipe = results
+      console.log(this.recipe)
+    });
+  }
+
+  revert() {
+    this.ingredientForm.reset();
+  }
+
   updateRecipe() {
-    //api call for update recipe
+    this._recipeService.updateRecipe(this.recipe).subscribe((res)=>
+    {
+      console.log(res)
+    });
   }
 
 }

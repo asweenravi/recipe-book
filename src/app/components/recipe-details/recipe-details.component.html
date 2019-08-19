@@ -1,4 +1,4 @@
-<section class="recipe-details">
+<section class="recipe-details" *ngIf="recipe">
     <div class="container">
         <div class="row">
             <div class="editable-section">
@@ -8,7 +8,7 @@
             </div>
             <h3 class="recipe-heading">{{recipe.title}}</h3>
             <input type="text" [(ngModel)]="recipe.title" [hidden]="!editable" class="form-control text-field"
-                    placeholder="Enter Title">
+                placeholder="Enter Title">
         </div>
         <div class="row">
             <div class="col-6">
@@ -19,8 +19,8 @@
             <div class="col-6">
                 <div class="row">
                     <p class="recipe-description">{{recipe.description}}</p>
-                    <input type="text" [(ngModel)]="recipe.description" [hidden]="!editable" class="form-control text-field"
-                    placeholder="Enter Title">
+                    <input type="text" [(ngModel)]="recipe.description" [hidden]="!editable"
+                        class="form-control text-field" placeholder="Enter Title">
                 </div>
                 <div class="row">
                     <div class="ingredient-heading">
