@@ -42,3 +42,7 @@ form button {
     float: right;
     margin-left: .5rem; 
 }
+
+.cart-item:last-child {
+    margin-bottom: 10rem;
+}

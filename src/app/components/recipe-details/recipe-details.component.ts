@@ -28,7 +28,7 @@ export class RecipeDetailsComponent implements OnInit {
 
   addIngredient() {
     this.recipe.ingredients.push(this.ingredientForm.controls.ingredient.value);
-    console.log(this.recipe.ingredients);
+    this.updateRecipe();
     this.revert();
   }
 
@@ -36,6 +36,7 @@ export class RecipeDetailsComponent implements OnInit {
     var confirmation = confirm("Are you sure you want to delete this item?");
     if (confirmation) {
       this.recipe.ingredients.splice(index, 1);
+      this.updateRecipe();
       if (this.recipe.ingredients.length === 0) {
         this.editable = false;
       }

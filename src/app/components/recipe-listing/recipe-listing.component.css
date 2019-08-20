@@ -9,6 +9,8 @@
 
 .image-section {
     height: 17rem;
+    width: 17rem;
+    object-fit: cover;
 }
 
 .recipe-item {

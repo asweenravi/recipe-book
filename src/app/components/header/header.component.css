@@ -25,10 +25,15 @@
     width: 20%;
 }
 
-.header-right a{
+.header-right a,
+.logo a{
     text-decoration: none;
     color: black;
     cursor: pointer;
     font-size: 1rem;
     margin: 0 3%;
+}
+
+.logo a{
+    font-size: 2rem;
 }

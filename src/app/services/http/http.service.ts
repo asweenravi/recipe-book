@@ -27,6 +27,6 @@ export class HttpService {
   }
 
   delete(body,endpoint) {
-    return this.http.delete(this.baseURL+endpoint, body);
+    return this.http.delete(this.baseURL+endpoint+body.id);
   }
 }

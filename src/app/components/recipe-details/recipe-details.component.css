@@ -61,3 +61,13 @@
 .error-msg{
     color: red;
 }
+
+.recipe-image {
+    height: 30rem;
+    width: 30rem;
+    object-fit: cover;
+}
+
+.ingredient-item:last-child {
+    margin-bottom: 10rem;
+}
