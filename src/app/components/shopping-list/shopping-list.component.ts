@@ -9,12 +9,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class ShoppingListComponent implements OnInit {
 
   shoppingForm = new FormGroup({
-    name: new FormControl('',[Validators.required]),
-    amount: new FormControl('',[Validators.required])
+    name: new FormControl('', [Validators.required]),
+    amount: new FormControl('', [Validators.required])
   });
   cartItem: Object = {
     'name': '',
-    'amount': '' 
+    'amount': ''
   };
   cartItems: any = [];
   editable: boolean = false;
@@ -30,7 +30,7 @@ export class ShoppingListComponent implements OnInit {
 
   addProduct() {
     this.cartItem['name'] = this.shoppingForm.controls.name.value;
-    this.cartItem['amount'] = this.shoppingForm.controls.amount.value; 
+    this.cartItem['amount'] = this.shoppingForm.controls.amount.value;
     var addingItem = JSON.parse(JSON.stringify(this.cartItem));
     this.cartItems.push(addingItem);
     this.revert();
@@ -38,9 +38,12 @@ export class ShoppingListComponent implements OnInit {
 
 
   deleteItem(index) {
-    this.cartItems.splice(index,1);
-    if(this.cartItems.length === 0) {
-      this.editable = false;
+    var confirmation = confirm("Are you sure you want to delete this item?");
+    if (confirmation) {
+      this.cartItems.splice(index, 1);
+      if (this.cartItems.length === 0) {
+        this.editable = false;
+      }
     }
   }
 

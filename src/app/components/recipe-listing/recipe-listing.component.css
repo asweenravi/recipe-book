@@ -44,3 +44,7 @@
     float: right;
     font-size: 2rem;
 }
+
+.row.recipe-item:last-child {
+    margin-bottom: 10rem;
+}

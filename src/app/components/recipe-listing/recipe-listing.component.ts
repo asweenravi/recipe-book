@@ -47,9 +47,12 @@ export class RecipeListingComponent implements OnInit {
   }
 
   deleteItem() {
-    this._recipeService.deleteRecipe(this.recipe).subscribe((res)=>{
-      console.log(res);
-    })
+    var confirmation = confirm("Are you sure you want to delete this item?");
+    if(confirmation){
+      this._recipeService.deleteRecipe(this.recipe).subscribe((res)=>{
+        console.log(res);
+      });
+    }
   }
 
   getRecipes() {

@@ -33,9 +33,12 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   deleteIngredient(index) {
-    this.recipe.ingredients.splice(index, 1);
-    if (this.recipe.ingredients.length === 0) {
-      this.editable = false;
+    var confirmation = confirm("Are you sure you want to delete this item?");
+    if (confirmation) {
+      this.recipe.ingredients.splice(index, 1);
+      if (this.recipe.ingredients.length === 0) {
+        this.editable = false;
+      }
     }
   }
 
@@ -51,8 +54,7 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   updateRecipe() {
-    this._recipeService.updateRecipe(this.recipe).subscribe((res)=>
-    {
+    this._recipeService.updateRecipe(this.recipe).subscribe((res) => {
       console.log(res)
     });
   }

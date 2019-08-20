@@ -23,7 +23,7 @@ export class HttpService {
   }
 
   put(body, endpoint) {
-    return this.http.post(this.baseURL+endpoint, body, this.httpOptions);
+    return this.http.put(this.baseURL+endpoint, body, this.httpOptions);
   }
 
   delete(body,endpoint) {
